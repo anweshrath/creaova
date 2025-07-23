@@ -2,7 +2,9 @@ import type { AppLoadContext, EntryContext } from '@remix-run/cloudflare';
 import { RemixServer } from '@remix-run/react';
 import { isbot } from 'isbot';
 import pkg from 'react-dom/server';
-const { renderToReadableStream } = pkg;
+const renderToReadableStream = pkg.renderToReadableStream || pkg.default.renderToReadableStream;
+// OR, if the above doesn't work, try just:
+// const renderToReadableStream = pkg.default.renderToReadableStream;
 import { renderHeadToString } from 'remix-island';
 import { Head } from './root';
 import { themeStore } from '~/lib/stores/theme';
